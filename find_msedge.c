@@ -1,4 +1,6 @@
-/* find_msedge --- Find the location of Microsoft Edge web browser */
+/* find_msedge by katahiromz --- Find the location of Microsoft Edge web browser
+ * License: MIT
+ */
 #include <windows.h>
 #include <stdio.h>
 
@@ -35,8 +37,8 @@ BOOL find_msedge(LPTSTR pszPath, DWORD cchPathMax)
 int main(void)
 {
     TCHAR szPath[MAX_PATH];
-    BOOL ret = find_msedge(szPath, _countof(szPath));
-    if (ret)
+    BOOL found = find_msedge(szPath, _countof(szPath));
+    if (found)
     {
 #ifdef UNICODE
         printf("found: %ls\n", szPath);
