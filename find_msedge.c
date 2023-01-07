@@ -26,7 +26,7 @@ BOOL get_msedge_path(HKEY hBaseKey, LPTSTR pszPath, DWORD cchPathMax)
     pszPath[cchPathMax - 1] = 0;
 
     RegCloseKey(hKey);
-    return (error == ERROR_SUCCESS) && (pszPath[0] != 0);
+    return (error == ERROR_SUCCESS) && (GetFileAttributes(pszPath) != 0xFFFFFFFF);
 }
 
 BOOL find_msedge(LPTSTR pszPath, DWORD cchPathMax)
