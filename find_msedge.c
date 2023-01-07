@@ -12,6 +12,7 @@ BOOL get_msedge_path(HKEY hBaseKey, LPTSTR pszPath, DWORD cchPathMax)
 {
     HKEY hKey;
     LONG error;
+    DWORD cbPath;
 
     pszPath[0] = 0;
     error = RegOpenKeyEx(hBaseKey,
@@ -20,8 +21,8 @@ BOOL get_msedge_path(HKEY hBaseKey, LPTSTR pszPath, DWORD cchPathMax)
     if (error != ERROR_SUCCESS)
         return FALSE;
 
-    cchPathMax *= sizeof(TCHAR);
-    error = RegQueryValueEx(hKey, NULL, NULL, NULL, (LPBYTE)pszPath, &cchPathMax);
+    cbPath = cchPathMax * sizeof(TCHAR);
+    error = RegQueryValueEx(hKey, NULL, NULL, NULL, (LPBYTE)pszPath, &cbPath);
     pszPath[cchPathMax - 1] = 0;
 
     RegCloseKey(hKey);
